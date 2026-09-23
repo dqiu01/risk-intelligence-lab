@@ -1,38 +1,51 @@
-name: Quant model tests
+name: Risk Intelligence Lab CI
 
 on:
   push:
   pull_request:
 
 jobs:
-  models:
-    name: ${{ matrix.model }}
+  engines:
+    name: engine / ${{ matrix.engine }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        model:
-          - models/01-risk-exposure-loss-distribution
-          - models/02-liquidity-cashflow-risk
-          - models/03-market-portfolio-risk
-          - models/04-credit-counterparty-risk
-          - models/05-monte-carlo-scenario-engine
-          - models/06-stress-reverse-stress
-          - models/07-risk-constrained-optimization
-          - models/08-integrated-risk-dependency
+        engine:
+          - engines/01-risk-exposure-loss-distribution
+          - engines/02-liquidity-cashflow-risk
+          - engines/03-market-portfolio-risk
+          - engines/04-credit-counterparty-risk
+          - engines/05-monte-carlo-scenario-engine
+          - engines/06-stress-reverse-stress
+          - engines/07-risk-constrained-optimization
+          - engines/08-integrated-risk-dependency
     defaults:
       run:
-        working-directory: ${{ matrix.model }}
+        working-directory: ${{ matrix.engine }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
-      - name: Install dependencies
+      - name: Install engine dependencies
         run: pip install -r requirements.txt
-      - name: Run tests
+      - name: Run engine tests
         run: pytest
-      - name: Build interactive app
-        run: python -c "import app; assert app.build_app() is not None"
-      - name: Run validation
+      - name: Run engine validation
         run: python validation/validate_model.py
+
+  integrated-interface:
+    name: integrated interactive interface
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install lab dependencies
+        run: pip install -r requirements.txt
+      - name: Run integrated interface tests
+        run: pytest
+      - name: Build unified application
+        run: python -c "import app; assert app.build_app() is not None"
