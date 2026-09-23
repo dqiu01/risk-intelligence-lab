@@ -1,5 +1,7 @@
 # Market / Portfolio Risk
 
+> **Engine component:** This directory is part of the unified Risk Intelligence Lab. `panel.py` is an interface adapter and is not a standalone application. Launch the complete lab from the repository root with `python app.py`.
+
 A fat-tail market-risk simulator for personal portfolios, operating reserves, treasuries, and institutional multi-asset allocations. It uses correlated Student-t returns to make tail behavior visible rather than assuming purely Gaussian markets.
 
 ## Outputs
@@ -11,6 +13,7 @@ VaR 95/99, Expected Shortfall 95/99, loss probability, simulated maximum drawdow
 Edit weights, expected returns, volatilities, common correlation, tail thickness, horizon, portfolio value, and simulation count. Visualize the P&L distribution, drawdown distribution, tail attribution, and stress results.
 
 ```bash
+cd ../..
 pip install -r requirements.txt
 python app.py
 ```
