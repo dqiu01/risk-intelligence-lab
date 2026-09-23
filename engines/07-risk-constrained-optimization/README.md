@@ -1,6 +1,6 @@
 # Risk-Constrained Decision Optimization
 
-> **Engine component:** This directory is part of the unified Risk Intelligence Lab. `panel.py` is an interface adapter and is not a standalone application. Launch the complete lab from the repository root with `python app.py`.
+> **Engine component:** This directory contains quantitative engine logic used by the single browser interface in `web/`. It is intentionally not a standalone application.
 
 A quantitative decision model for allocating limited capital across competing choices while keeping a portfolio-style risk measure inside a specified limit.
 
@@ -15,10 +15,10 @@ A quantitative decision model for allocating limited capital across competing ch
 
 The same mathematics can represent household allocation choices, a solo operator's capital decisions, business projects, mitigation programs, or large capital portfolios.
 
-```bash
-cd ../..
-pip install -r requirements.txt
-python app.py
-```
+\`\`\`bash
+# From the repository root
+python -m http.server 8000
+# Open http://localhost:8000/web/
+\`\`\`
 
 Synthetic expected-benefit and risk inputs are illustrative, not forecasts or recommendations.
