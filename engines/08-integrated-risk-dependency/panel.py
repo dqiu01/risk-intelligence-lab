@@ -31,4 +31,3 @@ def build_app():
   with gr.Tab('Decision summary'):summary=gr.Markdown()
   preset.change(load,preset,[reserve,risks]);button.click(run,[preset,reserve,risks,scale,sims,seed],[k,dist,tail,curve,ct,curve_table,summary])
  return app
-if __name__=='__main__':build_app().launch()
