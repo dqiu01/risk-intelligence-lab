@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interactive quantitative risk intelligence laboratory with eight embedded risk engines.">
+  <title>Risk Intelligence Lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.plot.ly/plotly-3.1.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.29.5/full/pyodide.js"></script>
+</head>
+<body>
+  <div id="boot" class="boot">
+    <div class="boot-card">
+      <div class="boot-mark">R</div>
+      <h1>Risk Intelligence Lab</h1>
+      <p id="boot-text">Loading the quantitative runtime…</p>
+      <div class="progress"><span id="boot-progress"></span></div>
+      <small>Python, NumPy, pandas and SciPy run locally in your browser.</small>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">R</div>
+      <div>
+        <strong>Risk Intelligence Lab</strong>
+        <span>Interactive quantitative risk exploration</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="runtime-badge"><i></i> Browser-native engines</span>
+      <a href="https://github.com/dqiu01/risk-intelligence-lab" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="side-title">Explore engines</div>
+      <button class="nav-item active" data-view="overview">
+        <span class="nav-num">00</span>
+        <span><b>Overview</b><small>What the lab does</small></span>
+      </button>
+      <div id="engine-nav"></div>
+      <div class="sidebar-note">
+        <b>Your assumptions stay local.</b>
+        <span>The demo executes in the browser and sends no scenario data to a server.</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section id="overview-view" class="view active">
+        <div class="hero">
+          <div>
+            <span class="eyebrow">QUANTITATIVE RISK INTELLIGENCE</span>
+            <h1>Change an assumption.<br><em>Watch the risk move.</em></h1>
+            <p>
+              Eight quantitative engines live behind one exploration surface. Select a risk problem,
+              change the assumptions, run the engine, and inspect how the distribution, tail, constraint,
+              or decision changes.
+            </p>
+            <button id="start-exploring" class="primary">Start with Loss Distribution →</button>
+          </div>
+          <div class="hero-viz">
+            <div class="mini-card">
+              <span>Expected loss</span><strong>$135K</strong><small>baseline</small>
+            </div>
+            <div class="mini-card hot">
+              <span>Tail risk</span><strong>$432K</strong><small>ES95</small>
+            </div>
+            <svg viewBox="0 0 520 210" role="img" aria-label="Illustrative loss distribution">
+              <path d="M15 180 C90 180, 115 165, 155 124 C192 85, 213 52, 260 54 C310 56, 330 105, 365 132 C400 158, 435 172, 505 180" fill="none" stroke="currentColor" stroke-width="5"/>
+              <line x1="335" y1="28" x2="335" y2="184" stroke="currentColor" stroke-dasharray="6 7" opacity=".55"/>
+              <line x1="408" y1="55" x2="408" y2="184" stroke="currentColor" stroke-dasharray="6 7" opacity=".3"/>
+              <text x="320" y="20">VaR95</text><text x="393" y="48">ES95</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="overview-strip">
+          <div><strong>8</strong><span>risk engines</span></div>
+          <div><strong>1</strong><span>exploration workspace</span></div>
+          <div><strong>Live</strong><span>scenario recalculation</span></div>
+          <div><strong>Local</strong><span>browser execution</span></div>
+        </div>
+
+        <div class="section-heading">
+          <span>ENGINE MAP</span>
+          <h2>Choose the risk question, not a separate application.</h2>
+        </div>
+        <div id="overview-grid" class="engine-grid"></div>
+
+        <div class="how">
+          <div class="section-heading">
+            <span>HOW TO USE IT</span>
+            <h2>From uncertainty to decision.</h2>
+          </div>
+          <div class="flow">
+            <div><b>01</b><strong>Choose a scenario</strong><span>Individual, solo operator, small business, or organization.</span></div>
+            <div><b>02</b><strong>Change assumptions</strong><span>Stress the inputs that actually matter to the engine.</span></div>
+            <div><b>03</b><strong>Run the model</strong><span>The Python engine recalculates distributions and metrics.</span></div>
+            <div><b>04</b><strong>Read the decision</strong><span>Inspect tail risk, constraints, drivers, and trade-offs visually.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="engine-view" class="view">
+        <div class="engine-header">
+          <div>
+            <span id="engine-kicker" class="eyebrow"></span>
+            <h1 id="engine-title"></h1>
+            <p id="engine-description"></p>
+          </div>
+          <div class="engine-id" id="engine-id"></div>
+        </div>
+
+        <div class="workspace">
+          <aside class="controls-card">
+            <div class="card-heading">
+              <div><span>SCENARIO INPUTS</span><h3>Experiment</h3></div>
+              <button id="reset-controls" class="ghost">Reset</button>
+            </div>
+            <label class="field">
+              <span>Preset scenario</span>
+              <select id="preset-select"></select>
+            </label>
+            <div id="dynamic-controls"></div>
+            <button id="run-engine" class="primary wide">Run quantitative engine</button>
+            <div class="seed-note">Fixed random seed = 42 for reproducible exploration.</div>
+          </aside>
+
+          <div class="results">
+            <div id="running-banner" class="running-banner">Running engine…</div>
+            <div id="kpi-grid" class="kpi-grid"></div>
+            <div class="chart-grid">
+              <article class="chart-card"><div id="chart-1"></div></article>
+              <article class="chart-card"><div id="chart-2"></div></article>
+            </div>
+            <article class="interpretation-card">
+              <div class="interpretation-label">WHAT THIS MEANS</div>
+              <p id="interpretation"></p>
+              <small id="model-note"></small>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <span>Risk Intelligence Lab · dqiu01</span>
+    <span>Synthetic examples · model outputs are conditional on assumptions</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
