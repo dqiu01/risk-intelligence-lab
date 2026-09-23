@@ -1,0 +1,66 @@
+name: Mid-Market Manufacturer
+annual_income_revenue: 150000000
+reserve: 8000000
+risk_tolerance: 12000000
+risks:
+  - name: Demand contraction
+    category: Strategic
+    annual_frequency: 0.7
+    typical_loss: 1800000
+    large_loss: 5000000
+    extreme_loss: 14000000
+    severity_distribution: lognormal
+    control_effectiveness: 0.10
+    systemic_sensitivity: 0.70
+  - name: Customer default
+    category: Credit
+    annual_frequency: 7.0
+    typical_loss: 180000
+    large_loss: 650000
+    extreme_loss: 2500000
+    severity_distribution: gamma
+    control_effectiveness: 0.20
+    systemic_sensitivity: 0.55
+  - name: Production interruption
+    category: Continuity
+    annual_frequency: 1.6
+    typical_loss: 700000
+    large_loss: 2400000
+    extreme_loss: 7000000
+    severity_distribution: lognormal
+    control_effectiveness: 0.25
+    systemic_sensitivity: 0.25
+  - name: Input cost shock
+    category: Market
+    annual_frequency: 1.8
+    typical_loss: 900000
+    large_loss: 2600000
+    extreme_loss: 6500000
+    severity_distribution: gamma
+    control_effectiveness: 0.12
+    systemic_sensitivity: 0.65
+  - name: Inventory impairment
+    category: Financial
+    annual_frequency: 1.0
+    typical_loss: 450000
+    large_loss: 1300000
+    extreme_loss: 4000000
+    severity_distribution: triangular
+    control_effectiveness: 0.15
+    systemic_sensitivity: 0.30
+mitigations:
+  - name: Customer credit limits
+    risk_name: Customer default
+    annual_cost: 180000
+    frequency_reduction: 0.25
+    severity_reduction: 0.20
+  - name: Production resilience program
+    risk_name: Production interruption
+    annual_cost: 550000
+    frequency_reduction: 0.25
+    severity_reduction: 0.30
+  - name: Input hedging program
+    risk_name: Input cost shock
+    annual_cost: 320000
+    frequency_reduction: 0.05
+    severity_reduction: 0.35
