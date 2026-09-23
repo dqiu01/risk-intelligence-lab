@@ -1,1 +1,3 @@
-numpy>=2,<3\npandas>=2.2,<3\npytest>=8,<10\n
+numpy>=2,<3
+pandas>=2.2,<3
+pytest>=8,<10
