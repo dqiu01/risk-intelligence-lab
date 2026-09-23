@@ -1,0 +1,71 @@
+name: Growing Small Business
+annual_income_revenue: 5000000
+reserve: 300000
+risk_tolerance: 500000
+risks:
+  - name: Customer default
+    category: Credit
+    annual_frequency: 3.0
+    typical_loss: 10000
+    large_loss: 30000
+    extreme_loss: 100000
+    severity_distribution: lognormal
+    control_effectiveness: 0.15
+    systemic_sensitivity: 0.45
+  - name: Revenue interruption
+    category: Revenue
+    annual_frequency: 0.7
+    typical_loss: 30000
+    large_loss: 100000
+    extreme_loss: 300000
+    severity_distribution: gamma
+    control_effectiveness: 0.10
+    systemic_sensitivity: 0.60
+  - name: Operational failure
+    category: Operations
+    annual_frequency: 1.5
+    typical_loss: 15000
+    large_loss: 50000
+    extreme_loss: 150000
+    severity_distribution: lognormal
+    control_effectiveness: 0.20
+    systemic_sensitivity: 0.25
+  - name: Financial fraud
+    category: Financial
+    annual_frequency: 0.4
+    typical_loss: 40000
+    large_loss: 100000
+    extreme_loss: 350000
+    severity_distribution: lognormal
+    control_effectiveness: 0.25
+    systemic_sensitivity: 0.10
+  - name: Major unexpected expense
+    category: Strategic
+    annual_frequency: 0.3
+    typical_loss: 50000
+    large_loss: 100000
+    extreme_loss: 250000
+    severity_distribution: triangular
+    control_effectiveness: 0.05
+    systemic_sensitivity: 0.35
+mitigations:
+  - name: Stronger credit screening
+    risk_name: Customer default
+    annual_cost: 18000
+    frequency_reduction: 0.30
+    severity_reduction: 0.05
+  - name: Business continuity upgrade
+    risk_name: Revenue interruption
+    annual_cost: 45000
+    frequency_reduction: 0.15
+    severity_reduction: 0.35
+  - name: Preventive maintenance program
+    risk_name: Operational failure
+    annual_cost: 28000
+    frequency_reduction: 0.30
+    severity_reduction: 0.15
+  - name: Fraud control package
+    risk_name: Financial fraud
+    annual_cost: 22000
+    frequency_reduction: 0.35
+    severity_reduction: 0.20
