@@ -1,6 +1,6 @@
 # Liquidity / Cash-Flow-at-Risk
 
-> **Engine component:** This directory is part of the unified Risk Intelligence Lab. `panel.py` is an interface adapter and is not a standalone application. Launch the complete lab from the repository root with `python app.py`.
+> **Engine component:** This directory contains quantitative engine logic used by the single browser interface in `web/`. It is intentionally not a standalone application.
 
 Interactive cash-path simulation for individuals, solo operators, and organizations. The model propagates uncertain monthly income, fixed costs, variable costs, debt service, and delayed collections into a distribution of future cash balances.
 
@@ -18,10 +18,10 @@ Expected/median/P05 ending cash, Cash-Flow-at-Risk 95, minimum-path cash, liquid
 
 ## Run
 
-```bash
-cd ../..
-pip install -r requirements.txt
-python app.py
-```
+\`\`\`bash
+# From the repository root
+python -m http.server 8000
+# Open http://localhost:8000/web/
+\`\`\`
 
 Presets are synthetic and illustrative. Outputs are conditional scenario estimates, not forecasts or financial advice.
