@@ -1,6 +1,6 @@
 import pandas as pd
 
-import app
+import panel as app
 
 
 def test_default_scenario_table_parses():
