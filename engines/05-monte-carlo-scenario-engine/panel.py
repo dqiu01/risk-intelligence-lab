@@ -29,4 +29,3 @@ def build_app():
   with gr.Tab('Decision summary'):summary=gr.Markdown()
   preset.change(load,preset,[base,target,conv,drivers]);button.click(run,[preset,base,target,conv,drivers,sims,seed,stress],[k,dist,importance,imp,st,summary])
  return app
-if __name__=='__main__':build_app().launch()
