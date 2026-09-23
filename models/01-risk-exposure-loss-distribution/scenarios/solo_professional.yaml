@@ -1,0 +1,43 @@
+name: Solo Professional
+annual_income_revenue: 180000
+reserve: 30000
+risk_tolerance: 50000
+risks:
+  - name: Client concentration loss
+    category: Revenue
+    annual_frequency: 0.8
+    typical_loss: 12000
+    large_loss: 30000
+    extreme_loss: 60000
+    severity_distribution: lognormal
+    control_effectiveness: 0.10
+    systemic_sensitivity: 0.30
+  - name: Payment default
+    category: Credit
+    annual_frequency: 1.5
+    typical_loss: 2500
+    large_loss: 8000
+    extreme_loss: 20000
+    severity_distribution: gamma
+    control_effectiveness: 0.15
+    systemic_sensitivity: 0.25
+  - name: Work interruption
+    category: Continuity
+    annual_frequency: 0.7
+    typical_loss: 5000
+    large_loss: 14000
+    extreme_loss: 35000
+    severity_distribution: triangular
+    control_effectiveness: 0.05
+    systemic_sensitivity: 0.10
+mitigations:
+  - name: Diversify client base
+    risk_name: Client concentration loss
+    annual_cost: 5000
+    frequency_reduction: 0.25
+    severity_reduction: 0.20
+  - name: Upfront payment policy
+    risk_name: Payment default
+    annual_cost: 1800
+    frequency_reduction: 0.35
+    severity_reduction: 0.10
