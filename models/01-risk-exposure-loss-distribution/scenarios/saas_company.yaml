@@ -1,0 +1,57 @@
+name: Growth SaaS Company
+annual_income_revenue: 10000000
+reserve: 800000
+risk_tolerance: 1200000
+risks:
+  - name: Customer concentration
+    category: Revenue
+    annual_frequency: 0.9
+    typical_loss: 160000
+    large_loss: 450000
+    extreme_loss: 1200000
+    severity_distribution: lognormal
+    control_effectiveness: 0.10
+    systemic_sensitivity: 0.55
+  - name: Churn shock
+    category: Revenue
+    annual_frequency: 1.4
+    typical_loss: 110000
+    large_loss: 300000
+    extreme_loss: 800000
+    severity_distribution: gamma
+    control_effectiveness: 0.08
+    systemic_sensitivity: 0.65
+  - name: Billing and payment loss
+    category: Credit
+    annual_frequency: 3.5
+    typical_loss: 20000
+    large_loss: 70000
+    extreme_loss: 180000
+    severity_distribution: gamma
+    control_effectiveness: 0.20
+    systemic_sensitivity: 0.30
+  - name: Service interruption loss
+    category: Continuity
+    annual_frequency: 1.1
+    typical_loss: 75000
+    large_loss: 240000
+    extreme_loss: 650000
+    severity_distribution: lognormal
+    control_effectiveness: 0.20
+    systemic_sensitivity: 0.20
+mitigations:
+  - name: Concentration reduction program
+    risk_name: Customer concentration
+    annual_cost: 80000
+    frequency_reduction: 0.15
+    severity_reduction: 0.30
+  - name: Retention investment
+    risk_name: Churn shock
+    annual_cost: 120000
+    frequency_reduction: 0.25
+    severity_reduction: 0.10
+  - name: Resilience upgrade
+    risk_name: Service interruption loss
+    annual_cost: 65000
+    frequency_reduction: 0.25
+    severity_reduction: 0.30
