@@ -1,5 +1,7 @@
 # Stress & Reverse Stress Testing
 
+> **Engine component:** This directory is part of the unified Risk Intelligence Lab. `panel.py` is an interface adapter and is not a standalone application. Launch the complete lab from the repository root with `python app.py`.
+
 Forward stress asks **“what happens if these shocks occur?”** Reverse stress asks **“what is the smallest modeled combination of adverse conditions that reaches the loss capacity I care about?”**
 
 ## Quantitative design
@@ -11,6 +13,7 @@ Each factor has a maximum adverse move, a linear loss at that maximum, optional 
 Forward scenario losses, capacity usage, optimized reverse-stress combination, actual adverse changes by factor, single-factor breakpoints, and a two-factor loss surface.
 
 ```bash
+cd ../..
 pip install -r requirements.txt
 python app.py
 ```
