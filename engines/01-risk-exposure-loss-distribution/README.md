@@ -1,5 +1,7 @@
 # Risk Exposure & Loss Distribution Model
 
+> **Engine component:** This directory is part of the unified Risk Intelligence Lab. `panel.py` is an interface adapter and is not a standalone application. Launch the complete lab from the repository root with `python app.py`.
+
 > Interactive quantitative risk-management showcase: turn uncertain event frequency and loss severity into aggregate loss distributions, tail-risk measures, reserve adequacy, stress tests, and mitigation decisions.
 
 ## Why this project exists
@@ -31,8 +33,9 @@ The Gradio + Plotly application contains four working areas:
 ### Run locally
 
 ```bash
+# From the repository root
 python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+source .venv/bin/activate        # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
 python app.py
 ```
