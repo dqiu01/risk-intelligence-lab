@@ -42,4 +42,3 @@ def build_app():
         preset.change(load,preset,[value,assets,corr,df,days])
         button.click(run,[preset,value,assets,corr,df,days,sims,seed],[k,dist,dd,contrib_plot,contrib,stress,summary])
     return app
-if __name__=='__main__': build_app().launch()
