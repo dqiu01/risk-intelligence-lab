@@ -1,106 +1,107 @@
-# risk-intelligence-lab
+# Risk Intelligence Lab
 
-**One interactive quantitative risk laboratory powered by eight risk engines.**
+**A browser-first quantitative risk laboratory powered by eight embedded Python engines.**
 
-This repository is not a collection of eight standalone applications. It is a **single Risk Intelligence Lab interface** that lets a user experiment with different risk questions while the appropriate quantitative engine runs underneath.
+![Risk Intelligence Lab interface](assets/interface-preview.svg)
 
-The architecture is:
+The portfolio is designed to be **used**, not just read. A user chooses a risk engine, selects a scenario, changes assumptions, runs the model, and immediately sees the calculated metrics and visual response.
 
-```text
-                         ┌──────────────────────────────┐
-                         │     Risk Intelligence Lab    │
-                         │      unified interface       │
-                         └──────────────┬───────────────┘
-                                        │
-          ┌───────────────┬─────────────┼─────────────┬───────────────┐
-          │               │             │             │               │
-   Loss Distribution   Liquidity     Market Risk   Credit Risk   Scenario Engine
-          │               │             │             │               │
-          └───────────────┴───────┬─────┴─────────────┴───────────────┘
-                                  │
-                     Stress / Optimization / Integrated Risk
-```
+## What is interactive
 
-Users remain inside the same application and switch between engine views. Each engine exposes editable assumptions, calculated risk metrics, and visual representations that make the underlying risk-management logic explorable.
+The browser interface exposes real model inputs such as:
 
-## Run the lab
+- reserves and risk tolerance;
+- loss-frequency and loss-severity shocks;
+- cash and liquidity thresholds;
+- portfolio correlation and risk horizon;
+- PD and LGD stress;
+- systemic scenario shocks;
+- reverse-stress risk capacity;
+- optimization budgets and risk limits;
+- cross-risk dependency strength.
+
+Each change is passed to the underlying Python engine. The engine recalculates the scenario and returns new KPI cards, distributions, contribution charts, stress curves, or optimization frontiers.
+
+## Run the browser lab now
+
+No Python package installation is required for the interactive interface.
 
 From the repository root:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python app.py
+python -m http.server 8000
 ```
 
-There is intentionally **one launch point: `app.py`**.
-
-## Eight quantitative engines
-
-| # | Engine | What the user can explore |
-|---:|---|---|
-| 01 | [Risk Exposure & Loss Distribution](engines/01-risk-exposure-loss-distribution/) | Event frequency/severity, Monte Carlo aggregate loss, VaR/ES, reserve adequacy, mitigation |
-| 02 | [Liquidity / Cash-Flow-at-Risk](engines/02-liquidity-cashflow-risk/) | Cash paths, liquidity breach, insolvency, buffer sizing, action comparison |
-| 03 | [Market / Portfolio Risk](engines/03-market-portfolio-risk/) | Fat-tail returns, VaR/ES, drawdowns, tail attribution, market stress |
-| 04 | [Credit / Counterparty Risk](engines/04-credit-counterparty-risk/) | PD/LGD/EAD, correlated default, concentration, tail loss, credit stress |
-| 05 | [Monte Carlo Scenario Engine](engines/05-monte-carlo-scenario-engine/) | Continuous uncertain drivers, dependency, target-miss probability, sensitivity |
-| 06 | [Stress & Reverse Stress](engines/06-stress-reverse-stress/) | Forward shocks, breakpoints, nonlinear interaction, reverse-stress optimization |
-| 07 | [Risk-Constrained Optimization](engines/07-risk-constrained-optimization/) | Capital allocation under budget/cap/risk constraints, efficient frontier |
-| 08 | [Integrated Risk / Dependency](engines/08-integrated-risk-dependency/) | Cross-risk aggregation, diversification, common-factor dependency, tail contribution |
-
-## Repository architecture
+Then open:
 
 ```text
-risk-intelligence-lab/
-├── app.py                     # the only runnable user interface
-├── requirements.txt           # unified application dependencies
-├── tests/                     # integrated interface tests
-├── .github/workflows/test.yml
-└── engines/
-    ├── 01-risk-exposure-loss-distribution/
-    │   ├── panel.py           # interface adapter, not a standalone app
-    │   ├── risk_model/        # quantitative engine
-    │   ├── tests/
-    │   └── validation/
-    ├── 02-liquidity-cashflow-risk/
-    │   ├── panel.py
-    │   ├── engine.py
-    │   ├── tests/
-    │   └── validation/
-    └── ... through engine 08
+http://localhost:8000/web/
 ```
 
-### Separation of responsibilities
+The page loads Pyodide, NumPy, pandas, SciPy and the repository's Python engine source into the browser. Calculations run locally in the browser.
 
-**The root interface**
-- provides one consistent place to explore risk;
-- routes the user to the selected engine;
-- hosts the visual experiment environment.
+## Public web deployment
 
-**Engine panels**
-- translate user controls into engine inputs;
-- convert engine results into interactive visualizations;
-- do not launch independently.
+A GitHub Pages deployment workflow is included in `.github/workflows/pages.yml`.
 
-**Quantitative engines**
-- contain the calculations, simulations, optimization, attribution, and stress logic;
-- remain independently testable and reusable;
-- do not own the application experience.
+The repository currently needs GitHub Pages enabled once before that workflow can publish. In GitHub:
+
+**Settings → Pages → Source → GitHub Actions**
+
+Then run:
+
+**Actions → Deploy interactive Risk Intelligence Lab → Run workflow**
+
+The resulting site will be served from the repository's GitHub Pages URL.
+
+## One interface, eight engines
+
+| # | Engine | Experiment with |
+|---:|---|---|
+| 01 | [Risk Exposure & Loss Distribution](engines/01-risk-exposure-loss-distribution/) | Frequency/severity, aggregate loss, VaR/ES, reserve adequacy |
+| 02 | [Liquidity / Cash-Flow-at-Risk](engines/02-liquidity-cashflow-risk/) | Cash paths, liquidity breach, insolvency, buffer requirements |
+| 03 | [Market / Portfolio Risk](engines/03-market-portfolio-risk/) | Correlation, fat tails, VaR/ES, drawdown, attribution |
+| 04 | [Credit / Counterparty Risk](engines/04-credit-counterparty-risk/) | PD/LGD/EAD, correlated defaults, concentration, reserve stress |
+| 05 | [Monte Carlo Scenario Engine](engines/05-monte-carlo-scenario-engine/) | Continuous drivers, dependency, target miss, downside outcomes |
+| 06 | [Stress & Reverse Stress](engines/06-stress-reverse-stress/) | Forward shocks, nonlinear interactions, reverse-stress boundary |
+| 07 | [Risk-Constrained Optimization](engines/07-risk-constrained-optimization/) | Budget, risk limit, allocation, efficient frontier |
+| 08 | [Integrated Risk / Dependency](engines/08-integrated-risk-dependency/) | Cross-risk aggregation, diversification, dependency stress |
+
+## Architecture
+
+```text
+web/
+├── index.html          # only user-facing interface
+├── styles.css
+├── app.js              # controls, navigation, Plotly rendering
+└── bridge.py           # browser-to-engine Python adapter
+          │
+          ▼
+engines/
+├── 01-risk-exposure-loss-distribution/
+├── 02-liquidity-cashflow-risk/
+├── 03-market-portfolio-risk/
+├── 04-credit-counterparty-risk/
+├── 05-monte-carlo-scenario-engine/
+├── 06-stress-reverse-stress/
+├── 07-risk-constrained-optimization/
+└── 08-integrated-risk-dependency/
+```
+
+There is deliberately **no standalone application inside an engine directory**.
+
+The browser loads the actual Python engine source and executes it through Pyodide. The web layer owns presentation and interaction; the engine layer owns mathematics.
 
 ## Scale
 
-The lab is designed for:
+The lab is size-agnostic:
 
 **individual / household → solo professional → small business → mid-market organization → large organization**
 
-Risk-management sophistication scales with exposure and complexity rather than headcount.
+The model changes with exposure and complexity, not headcount.
 
-## Quality controls
+## Validation
 
-The CI pipeline now checks the architecture in two layers:
+Each engine has its own tests and validation report. CI validates all eight engines independently and also verifies the browser application bundle and JavaScript/Python bridge source.
 
-1. **Eight engine jobs** — unit tests and quantitative validation for every engine.
-2. **One integrated-interface job** — verifies the single Risk Intelligence Lab application builds with all eight engines connected.
-
-All included scenarios are synthetic demonstrations. Outputs are conditional on assumptions and are not forecasts or professional advice.
+All included scenarios are synthetic demonstrations. Model outputs are conditional on the assumptions entered and are not forecasts or professional advice.

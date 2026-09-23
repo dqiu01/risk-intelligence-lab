@@ -1,6 +1,1 @@
-gradio>=6.5,<7
-numpy>=2,<3
-pandas>=2.2,<3
-plotly>=6,<7
-scipy>=1.14,<2
-pytest>=8,<10
+numpy>=2,<3\npandas>=2.2,<3\nscipy>=1.14,<2\npytest>=8,<10\n

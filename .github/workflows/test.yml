@@ -39,17 +39,30 @@ jobs:
       - name: Run engine validation
         run: python validation/validate_model.py
 
-  integrated-interface:
-    name: integrated interactive interface
+  browser-interface:
+    name: browser interface
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
-      - name: Install lab dependencies
-        run: pip install -r requirements.txt
-      - name: Run integrated interface tests
-        run: pytest
-      - name: Build unified application
-        run: python -c "import app; assert app.build_app() is not None"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Check browser source
+        run: |
+          node --check web/app.js
+          python -m py_compile web/bridge.py
+          test -f web/index.html
+          test -f web/styles.css
+          test -f engines/01-risk-exposure-loss-distribution/risk_model/analysis.py
+          test -f engines/08-integrated-risk-dependency/engine.py
+      - name: Assemble deployable interface
+        run: |
+          mkdir -p public
+          cp -r web/. public/
+          cp -r engines public/engines
+          touch public/.nojekyll
+          test -f public/index.html
+          test -f public/bridge.py
