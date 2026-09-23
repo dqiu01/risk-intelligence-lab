@@ -33,4 +33,3 @@ def build_app():
   with gr.Tab('Method summary'):summary=gr.Markdown()
   preset.change(load,preset,[cap,inter,factors]);button.click(run,[preset,cap,inter,factors],[k,forward,reverse,surface,sc,rt,bp,summary])
  return app
-if __name__=='__main__':build_app().launch()
