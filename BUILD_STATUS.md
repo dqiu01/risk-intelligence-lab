@@ -1,51 +1,44 @@
 # Build Status
 
-## risk-intelligence-lab flagship portfolio
+## Architecture
 
-**Portfolio implementation status: 8 / 8 models complete and published to `main`.**
+**Current architecture: one integrated interactive application + eight quantitative engines.**
 
-| # | Model | Engine | Interactive UI | Tests | Validation | Model card |
-|---:|---|:---:|:---:|:---:|:---:|:---:|
-| 01 | Risk Exposure & Loss Distribution | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 02 | Liquidity / Cash-Flow-at-Risk | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 03 | Market / Portfolio Risk | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 04 | Credit / Counterparty Risk | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 05 | Monte Carlo Scenario Engine | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 06 | Stress & Reverse Stress Testing | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 07 | Risk-Constrained Decision Optimization | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 08 | Integrated Risk / Dependency Engine | ✅ | ✅ | ✅ | ✅ | ✅ |
+The previous structure of eight separately launchable mini-apps has been removed.
 
-## Verification completed before final integration
+- Root `app.py`: ✅ single user-facing entry point
+- Unified tabbed exploration interface: ✅
+- Engine 01 panel adapter: ✅ non-standalone
+- Engine 02 panel adapter: ✅ non-standalone
+- Engine 03 panel adapter: ✅ non-standalone
+- Engine 04 panel adapter: ✅ non-standalone
+- Engine 05 panel adapter: ✅ non-standalone
+- Engine 06 panel adapter: ✅ non-standalone
+- Engine 07 panel adapter: ✅ non-standalone
+- Engine 08 panel adapter: ✅ non-standalone
 
-- **53 automated tests passed** across the eight flagship modules.
-- Every Gradio application object instantiated successfully.
-- Every validation runner completed and generated a validation report.
-- Model 01's previously published GitHub CI run completed successfully.
-- The repository CI workflow has now been expanded to test, build, and validate **all eight models independently** through a GitHub Actions matrix.
+## Engine layer
 
-## Quantitative coverage
+| # | Engine | Quant engine | Panel adapter | Tests | Validation |
+|---:|---|:---:|:---:|:---:|:---:|
+| 01 | Risk Exposure & Loss Distribution | ✅ | ✅ | ✅ | ✅ |
+| 02 | Liquidity / Cash-Flow-at-Risk | ✅ | ✅ | ✅ | ✅ |
+| 03 | Market / Portfolio Risk | ✅ | ✅ | ✅ | ✅ |
+| 04 | Credit / Counterparty Risk | ✅ | ✅ | ✅ | ✅ |
+| 05 | Monte Carlo Scenario Engine | ✅ | ✅ | ✅ | ✅ |
+| 06 | Stress & Reverse Stress | ✅ | ✅ | ✅ | ✅ |
+| 07 | Risk-Constrained Optimization | ✅ | ✅ | ✅ | ✅ |
+| 08 | Integrated Risk / Dependency | ✅ | ✅ | ✅ | ✅ |
 
-The completed portfolio demonstrates:
+## CI design
 
-- frequency / severity loss modeling;
-- aggregate Monte Carlo loss simulation;
-- VaR and Expected Shortfall;
-- cash-path and liquidity risk;
-- fat-tail market and drawdown risk;
-- PD / LGD / EAD credit risk;
-- correlated defaults and concentration;
-- continuous-driver scenario simulation;
-- nonlinear stress and reverse-stress optimization;
-- risk-constrained capital allocation;
-- efficient-frontier analysis;
-- risk contribution and tail attribution;
-- copula-style dependency aggregation;
-- diversification and dependency stress.
+CI is intentionally split between:
 
-## Scope
+- **engine validation** — eight independent engine jobs;
+- **product integration** — one root-level job that builds the complete interactive laboratory.
 
-The project is intentionally size-agnostic. Presets and interfaces range from **individuals and households to solo operators, small businesses, mid-market organizations, and large organizations**. Models scale by exposure and complexity rather than headcount.
+This prevents an engine from being treated as its own standalone product while preserving strong quantitative testability.
 
-## Authoritative GitHub repository
+## Authoritative repository
 
 `dqiu01/risk-intelligence-lab`
