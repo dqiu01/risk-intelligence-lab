@@ -66,3 +66,11 @@ jobs:
           touch public/.nojekyll
           test -f public/index.html
           test -f public/bridge.py
+      - name: Install browser test runtime
+        run: |
+          npm install playwright
+          npx playwright install --with-deps chromium
+      - name: Exercise the real browser interface
+        run: |
+          python -m http.server 8000 > /tmp/risk-lab-http.log 2>&1 &
+          node web/smoke.mjs
