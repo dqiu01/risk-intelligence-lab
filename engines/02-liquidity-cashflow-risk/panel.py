@@ -73,6 +73,3 @@ def build_app():
         preset.change(load,preset,[start,income,fixed,var,debt,minimum,iv,cv,delay])
         button.click(run,[preset,start,income,fixed,var,debt,minimum,iv,cv,delay,sims,seed,income_shock,cost_shock],[kpi,dist,path,action_plot,action_table,summary])
     return app
-
-if __name__ == "__main__":
-    build_app().launch()
