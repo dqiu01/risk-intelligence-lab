@@ -268,6 +268,7 @@ async function stageFile(src,dst){
 }
 
 async function initPython(){
+  const sourcePrefix = location.pathname.includes('/web/') ? '../' : '';
   try{
     setProgress(10,"Starting Python in the browser…");
     state.pyodide=await loadPyodide({indexURL:"https://cdn.jsdelivr.net/pyodide/v0.29.5/full/"});
@@ -276,29 +277,29 @@ async function initPython(){
 
     const files=[
       ["bridge.py","/home/pyodide/bridge.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/__init__.py","/home/pyodide/engine01/risk_model/__init__.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/analysis.py","/home/pyodide/engine01/risk_model/analysis.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/frequency.py","/home/pyodide/engine01/risk_model/frequency.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/metrics.py","/home/pyodide/engine01/risk_model/metrics.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/mitigation.py","/home/pyodide/engine01/risk_model/mitigation.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/presets.py","/home/pyodide/engine01/risk_model/presets.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/schemas.py","/home/pyodide/engine01/risk_model/schemas.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/severity.py","/home/pyodide/engine01/risk_model/severity.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/simulation.py","/home/pyodide/engine01/risk_model/simulation.py"],
-      ["engines/01-risk-exposure-loss-distribution/risk_model/stress.py","/home/pyodide/engine01/risk_model/stress.py"],
-      ["engines/01-risk-exposure-loss-distribution/scenarios/individual_household.yaml","/home/pyodide/engine01/scenarios/individual_household.yaml"],
-      ["engines/01-risk-exposure-loss-distribution/scenarios/solo_professional.yaml","/home/pyodide/engine01/scenarios/solo_professional.yaml"],
-      ["engines/01-risk-exposure-loss-distribution/scenarios/small_business.yaml","/home/pyodide/engine01/scenarios/small_business.yaml"],
-      ["engines/01-risk-exposure-loss-distribution/scenarios/saas_company.yaml","/home/pyodide/engine01/scenarios/saas_company.yaml"],
-      ["engines/01-risk-exposure-loss-distribution/scenarios/mid_market.yaml","/home/pyodide/engine01/scenarios/mid_market.yaml"],
-      ["engines/01-risk-exposure-loss-distribution/scenarios/enterprise.yaml","/home/pyodide/engine01/scenarios/enterprise.yaml"],
-      ["engines/02-liquidity-cashflow-risk/engine.py","/home/pyodide/engine02.py"],
-      ["engines/03-market-portfolio-risk/engine.py","/home/pyodide/engine03.py"],
-      ["engines/04-credit-counterparty-risk/engine.py","/home/pyodide/engine04.py"],
-      ["engines/05-monte-carlo-scenario-engine/engine.py","/home/pyodide/engine05.py"],
-      ["engines/06-stress-reverse-stress/engine.py","/home/pyodide/engine06.py"],
-      ["engines/07-risk-constrained-optimization/engine.py","/home/pyodide/engine07.py"],
-      ["engines/08-integrated-risk-dependency/engine.py","/home/pyodide/engine08.py"]
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/__init__.py","/home/pyodide/engine01/risk_model/__init__.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/analysis.py","/home/pyodide/engine01/risk_model/analysis.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/frequency.py","/home/pyodide/engine01/risk_model/frequency.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/metrics.py","/home/pyodide/engine01/risk_model/metrics.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/mitigation.py","/home/pyodide/engine01/risk_model/mitigation.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/presets.py","/home/pyodide/engine01/risk_model/presets.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/schemas.py","/home/pyodide/engine01/risk_model/schemas.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/severity.py","/home/pyodide/engine01/risk_model/severity.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/simulation.py","/home/pyodide/engine01/risk_model/simulation.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/risk_model/stress.py","/home/pyodide/engine01/risk_model/stress.py"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/scenarios/individual_household.yaml","/home/pyodide/engine01/scenarios/individual_household.yaml"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/scenarios/solo_professional.yaml","/home/pyodide/engine01/scenarios/solo_professional.yaml"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/scenarios/small_business.yaml","/home/pyodide/engine01/scenarios/small_business.yaml"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/scenarios/saas_company.yaml","/home/pyodide/engine01/scenarios/saas_company.yaml"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/scenarios/mid_market.yaml","/home/pyodide/engine01/scenarios/mid_market.yaml"],
+      [sourcePrefix+"engines/01-risk-exposure-loss-distribution/scenarios/enterprise.yaml","/home/pyodide/engine01/scenarios/enterprise.yaml"],
+      [sourcePrefix+"engines/02-liquidity-cashflow-risk/engine.py","/home/pyodide/engine02.py"],
+      [sourcePrefix+"engines/03-market-portfolio-risk/engine.py","/home/pyodide/engine03.py"],
+      [sourcePrefix+"engines/04-credit-counterparty-risk/engine.py","/home/pyodide/engine04.py"],
+      [sourcePrefix+"engines/05-monte-carlo-scenario-engine/engine.py","/home/pyodide/engine05.py"],
+      [sourcePrefix+"engines/06-stress-reverse-stress/engine.py","/home/pyodide/engine06.py"],
+      [sourcePrefix+"engines/07-risk-constrained-optimization/engine.py","/home/pyodide/engine07.py"],
+      [sourcePrefix+"engines/08-integrated-risk-dependency/engine.py","/home/pyodide/engine08.py"]
     ];
     setProgress(55,"Connecting the eight risk engines…");
     let done=0;
