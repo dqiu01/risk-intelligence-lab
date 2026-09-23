@@ -5,11 +5,24 @@ on:
   pull_request:
 
 jobs:
-  model-01:
+  models:
+    name: ${{ matrix.model }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        model:
+          - models/01-risk-exposure-loss-distribution
+          - models/02-liquidity-cashflow-risk
+          - models/03-market-portfolio-risk
+          - models/04-credit-counterparty-risk
+          - models/05-monte-carlo-scenario-engine
+          - models/06-stress-reverse-stress
+          - models/07-risk-constrained-optimization
+          - models/08-integrated-risk-dependency
     defaults:
       run:
-        working-directory: models/01-risk-exposure-loss-distribution
+        working-directory: ${{ matrix.model }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -19,5 +32,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run tests
         run: pytest
+      - name: Build interactive app
+        run: python -c "import app; assert app.build_app() is not None"
       - name: Run validation
         run: python validation/validate_model.py
