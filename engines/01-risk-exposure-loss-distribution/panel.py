@@ -240,7 +240,3 @@ def build_app() -> gr.Blocks:
             [kpis, distribution, exceedance, contribution, driver, contribution_table, comparison, decision, mitigation_text],
         )
     return demo
-
-
-if __name__ == "__main__":
-    build_app().launch()
