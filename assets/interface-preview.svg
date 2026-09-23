@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081018"/><stop offset="1" stop-color="#0b1823"/></linearGradient>
+  <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#63e6be"/><stop offset="1" stop-color="#66a6ff"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000" flood-opacity=".28"/></filter>
+  <style>
+    .t{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#edf5fb}.m{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#8da3b5}.a{fill:#63e6be}
+    .panel{fill:#0d1721;stroke:#213242;stroke-width:1}.card{fill:#0f1c27;stroke:#213242;stroke-width:1}
+  </style>
+</defs>
+<rect width="1400" height="820" fill="url(#bg)"/>
+<rect width="1400" height="72" fill="#09131c" stroke="#213242"/>
+<rect x="24" y="16" width="40" height="40" rx="11" fill="url(#acc)"/>
+<text x="38" y="43" font-size="22" font-weight="800" fill="#06130f" font-family="Inter,Arial">R</text>
+<text x="80" y="34" class="t" font-size="16" font-weight="700">Risk Intelligence Lab</text>
+<text x="80" y="51" class="m" font-size="11">Interactive quantitative risk exploration</text>
+<rect x="1128" y="21" width="172" height="29" rx="15" fill="#0d1a24" stroke="#213242"/><circle cx="1145" cy="35" r="4" fill="#63e6be"/>
+<text x="1156" y="39" class="m" font-size="10">Browser-native engines</text>
+
+<rect x="0" y="72" width="236" height="748" fill="#09131c" stroke="#213242"/>
+<text x="22" y="106" class="m" font-size="9" letter-spacing="2">EXPLORE ENGINES</text>
+<g font-family="Inter,Arial">
+  <rect x="13" y="122" width="210" height="50" rx="9" fill="#102330" stroke="#2c5164"/>
+  <text x="25" y="151" class="a" font-size="10" font-weight="700">01</text><text x="55" y="144" class="t" font-size="12" font-weight="700">Loss Distribution</text><text x="55" y="160" class="m" font-size="9">Frequency · severity · tail risk</text>
+  <text x="25" y="206" class="a" font-size="10" font-weight="700">02</text><text x="55" y="205" class="m" font-size="12">Liquidity / Cash Flow</text>
+  <text x="25" y="251" class="a" font-size="10" font-weight="700">03</text><text x="55" y="250" class="m" font-size="12">Market / Portfolio Risk</text>
+  <text x="25" y="296" class="a" font-size="10" font-weight="700">04</text><text x="55" y="295" class="m" font-size="12">Credit / Counterparty</text>
+  <text x="25" y="341" class="a" font-size="10" font-weight="700">05</text><text x="55" y="340" class="m" font-size="12">Scenario Engine</text>
+  <text x="25" y="386" class="a" font-size="10" font-weight="700">06</text><text x="55" y="385" class="m" font-size="12">Stress / Reverse Stress</text>
+  <text x="25" y="431" class="a" font-size="10" font-weight="700">07</text><text x="55" y="430" class="m" font-size="12">Risk Optimization</text>
+  <text x="25" y="476" class="a" font-size="10" font-weight="700">08</text><text x="55" y="475" class="m" font-size="12">Integrated Risk</text>
+</g>
+
+<text x="274" y="115" class="a" font-size="10" font-weight="700" letter-spacing="2">ENGINE 01</text>
+<text x="274" y="158" class="t" font-size="34" font-weight="800">Risk Exposure &amp; Loss Distribution</text>
+<text x="274" y="187" class="m" font-size="13">Change risk assumptions and watch expected loss, tail exposure, and reserve adequacy recalculate.</text>
+
+<rect x="274" y="218" width="286" height="530" rx="14" class="panel" filter="url(#shadow)"/>
+<text x="294" y="246" class="a" font-size="9" letter-spacing="2">SCENARIO INPUTS</text><text x="294" y="272" class="t" font-size="20" font-weight="700">Experiment</text>
+<text x="294" y="307" class="m" font-size="10">Preset scenario</text><rect x="294" y="318" width="246" height="38" rx="8" fill="#08131c" stroke="#213242"/>
+<text x="307" y="342" class="t" font-size="11">Growing Small Business</text>
+<text x="294" y="388" class="m" font-size="10">Available reserve</text><text x="514" y="388" class="a" font-size="10" text-anchor="end">$300K</text>
+<rect x="294" y="399" width="246" height="8" rx="4" fill="#152633"/><rect x="294" y="399" width="152" height="8" rx="4" fill="#63e6be"/>
+<text x="294" y="440" class="m" font-size="10">Frequency shock</text><text x="514" y="440" class="a" font-size="10" text-anchor="end">+20%</text>
+<rect x="294" y="451" width="246" height="8" rx="4" fill="#152633"/><rect x="294" y="451" width="176" height="8" rx="4" fill="#66a6ff"/>
+<text x="294" y="492" class="m" font-size="10">Severity shock</text><text x="514" y="492" class="a" font-size="10" text-anchor="end">+10%</text>
+<rect x="294" y="503" width="246" height="8" rx="4" fill="#152633"/><rect x="294" y="503" width="163" height="8" rx="4" fill="#ffbd69"/>
+<rect x="294" y="678" width="246" height="46" rx="9" fill="url(#acc)"/><text x="417" y="707" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="800" fill="#06130f">RUN QUANTITATIVE ENGINE</text>
+
+<g>
+  <rect x="582" y="218" width="182" height="96" rx="12" class="card"/><text x="598" y="244" class="m" font-size="9">EXPECTED LOSS</text><text x="598" y="278" class="t" font-size="25" font-weight="800">$164.2K</text><text x="598" y="298" class="a" font-size="9">↑ stress-adjusted</text>
+  <rect x="776" y="218" width="182" height="96" rx="12" class="card"/><text x="792" y="244" class="m" font-size="9">VAR 95</text><text x="792" y="278" class="t" font-size="25" font-weight="800">$397.6K</text>
+  <rect x="970" y="218" width="182" height="96" rx="12" class="card"/><text x="986" y="244" class="m" font-size="9">EXPECTED SHORTFALL</text><text x="986" y="278" class="t" font-size="25" font-weight="800">$501.3K</text>
+  <rect x="1164" y="218" width="182" height="96" rx="12" class="card"/><text x="1180" y="244" class="m" font-size="9">RESERVE BREACH</text><text x="1180" y="278" fill="#ffbd69" font-family="Inter,Arial" font-size="25" font-weight="800">12.7%</text>
+</g>
+
+<rect x="582" y="328" width="374" height="300" rx="14" class="panel"/>
+<text x="600" y="355" class="t" font-size="13" font-weight="700">Aggregate annual loss distribution</text>
+<line x1="611" y1="582" x2="929" y2="582" stroke="#284052"/><line x1="611" y1="386" x2="611" y2="582" stroke="#284052"/>
+<path d="M616 576 C650 575,670 566,690 542 C712 512,730 456,754 423 C775 395,797 410,817 447 C840 490,856 536,887 556 C905 568,919 573,928 575" fill="none" stroke="#63e6be" stroke-width="4"/>
+<line x1="842" y1="384" x2="842" y2="582" stroke="#66a6ff" stroke-width="2" stroke-dasharray="6 6"/><text x="828" y="379" class="m" font-size="9">VaR95</text>
+<rect x="972" y="328" width="374" height="300" rx="14" class="panel"/>
+<text x="990" y="355" class="t" font-size="13" font-weight="700">Expected vs tail contribution</text>
+<g fill="#66a6ff"><rect x="1004" y="486" width="31" height="96"/><rect x="1071" y="510" width="31" height="72"/><rect x="1138" y="456" width="31" height="126"/><rect x="1205" y="528" width="31" height="54"/><rect x="1272" y="502" width="31" height="80"/></g>
+<g fill="#63e6be"><rect x="1037" y="442" width="31" height="140"/><rect x="1104" y="495" width="31" height="87"/><rect x="1171" y="416" width="31" height="166"/><rect x="1238" y="516" width="31" height="66"/><rect x="1305" y="470" width="31" height="112"/></g>
+
+<rect x="582" y="642" width="764" height="106" rx="14" class="panel"/>
+<text x="602" y="669" class="a" font-size="9" letter-spacing="2">WHAT THIS MEANS</text>
+<text x="602" y="696" class="t" font-size="13">Stress raises modeled reserve-breach probability from the baseline and pushes the 95% loss threshold above current reserves.</text>
+<text x="602" y="720" class="m" font-size="10">Change the sliders and run the engine again to see how the loss distribution and tail drivers respond.</text>
+</svg>
