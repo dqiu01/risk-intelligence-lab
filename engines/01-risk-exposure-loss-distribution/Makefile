@@ -1,4 +1,4 @@
-.PHONY: install test validate run
+.PHONY: install test validate
 
 install:
 	python -m pip install -r requirements.txt
@@ -9,5 +9,3 @@ test:
 validate:
 	python validation/validate_model.py
 
-run:
-	python app.py
