@@ -1,0 +1,57 @@
+name: Individual / Household
+annual_income_revenue: 120000
+reserve: 30000
+risk_tolerance: 60000
+risks:
+  - name: Income interruption
+    category: Income
+    annual_frequency: 0.35
+    typical_loss: 12000
+    large_loss: 30000
+    extreme_loss: 65000
+    severity_distribution: lognormal
+    control_effectiveness: 0.05
+    systemic_sensitivity: 0.30
+  - name: Major out-of-pocket emergency
+    category: Financial
+    annual_frequency: 0.45
+    typical_loss: 4000
+    large_loss: 15000
+    extreme_loss: 40000
+    severity_distribution: gamma
+    control_effectiveness: 0.10
+    systemic_sensitivity: 0.10
+  - name: Home or vehicle loss
+    category: Property
+    annual_frequency: 0.55
+    typical_loss: 2500
+    large_loss: 10000
+    extreme_loss: 30000
+    severity_distribution: triangular
+    control_effectiveness: 0.20
+    systemic_sensitivity: 0.10
+  - name: Fraud or identity loss
+    category: Financial
+    annual_frequency: 0.25
+    typical_loss: 1500
+    large_loss: 7000
+    extreme_loss: 25000
+    severity_distribution: lognormal
+    control_effectiveness: 0.25
+    systemic_sensitivity: 0.05
+mitigations:
+  - name: Income protection plan
+    risk_name: Income interruption
+    annual_cost: 1800
+    frequency_reduction: 0.05
+    severity_reduction: 0.35
+  - name: Expanded property coverage
+    risk_name: Home or vehicle loss
+    annual_cost: 900
+    frequency_reduction: 0.00
+    severity_reduction: 0.40
+  - name: Fraud monitoring and account controls
+    risk_name: Fraud or identity loss
+    annual_cost: 240
+    frequency_reduction: 0.30
+    severity_reduction: 0.15
