@@ -1,6 +1,6 @@
 # Risk Exposure & Loss Distribution Model
 
-> **Engine component:** This directory is part of the unified Risk Intelligence Lab. `panel.py` is an interface adapter and is not a standalone application. Launch the complete lab from the repository root with `python app.py`.
+> **Engine component:** This directory contains quantitative engine logic used by the single browser interface in `web/`. It is intentionally not a standalone application.
 
 > Interactive quantitative risk-management showcase: turn uncertain event frequency and loss severity into aggregate loss distributions, tail-risk measures, reserve adequacy, stress tests, and mitigation decisions.
 
