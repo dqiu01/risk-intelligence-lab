@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: risk-intelligence-lab-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   engines:
     name: engine / ${{ matrix.engine }}
