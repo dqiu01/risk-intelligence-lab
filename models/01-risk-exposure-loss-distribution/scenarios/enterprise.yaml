@@ -1,0 +1,66 @@
+name: Diversified Enterprise
+annual_income_revenue: 5000000000
+reserve: 250000000
+risk_tolerance: 400000000
+risks:
+  - name: Macro revenue shock
+    category: Strategic
+    annual_frequency: 0.6
+    typical_loss: 65000000
+    large_loss: 190000000
+    extreme_loss: 600000000
+    severity_distribution: lognormal
+    control_effectiveness: 0.10
+    systemic_sensitivity: 0.85
+  - name: Counterparty loss
+    category: Credit
+    annual_frequency: 4.0
+    typical_loss: 12000000
+    large_loss: 45000000
+    extreme_loss: 160000000
+    severity_distribution: gamma
+    control_effectiveness: 0.22
+    systemic_sensitivity: 0.60
+  - name: Major operating interruption
+    category: Continuity
+    annual_frequency: 1.2
+    typical_loss: 35000000
+    large_loss: 120000000
+    extreme_loss: 400000000
+    severity_distribution: lognormal
+    control_effectiveness: 0.30
+    systemic_sensitivity: 0.30
+  - name: Commodity and FX shock
+    category: Market
+    annual_frequency: 2.0
+    typical_loss: 28000000
+    large_loss: 90000000
+    extreme_loss: 280000000
+    severity_distribution: gamma
+    control_effectiveness: 0.18
+    systemic_sensitivity: 0.70
+  - name: Strategic investment impairment
+    category: Strategic
+    annual_frequency: 0.7
+    typical_loss: 50000000
+    large_loss: 170000000
+    extreme_loss: 550000000
+    severity_distribution: triangular
+    control_effectiveness: 0.05
+    systemic_sensitivity: 0.40
+mitigations:
+  - name: Counterparty diversification
+    risk_name: Counterparty loss
+    annual_cost: 4500000
+    frequency_reduction: 0.20
+    severity_reduction: 0.25
+  - name: Continuity investment
+    risk_name: Major operating interruption
+    annual_cost: 9000000
+    frequency_reduction: 0.20
+    severity_reduction: 0.30
+  - name: Hedge overlay
+    risk_name: Commodity and FX shock
+    annual_cost: 6000000
+    frequency_reduction: 0.05
+    severity_reduction: 0.35
